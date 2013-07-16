@@ -1,0 +1,13 @@
+# file: config.yaml
+publisher:
+  domain: ~
+  proxy: ~
+mainsite:
+  domain: ~
+  proxy: ~
+binary:
+  phantomjs: "phantomjs"
+  convert: "convert"
+path:
+  assets: "web/assets"
+  rasterizejs: ~
