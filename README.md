@@ -8,7 +8,7 @@ Generates a visual sitemap of telemundo.com.
     cp config.yaml-dist config.yaml
     python module.py -h
 
-## Requirements
+## Dependencies
 
 - [colorama](http://pypi.python.org/pypi/colorama)
 - [lxml](http://pypi.python.org/pypi/lxml)
