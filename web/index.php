@@ -14,12 +14,23 @@
     </head>
     <body>
         <div class="wrapper">
-            <div class="container">
 <?php
 $input_file = __DIR__ . '/assets/sitemap.json';
 if (file_exists($input_file)) {
-  $sites = json_decode(file_get_contents($input_file));
-  foreach ($sites as $site) {
+  $records = json_decode(file_get_contents($input_file));
+  $columns = array();
+  foreach ($records as $record) {
+    if (!isset($columns[$record->section])) {
+      $columns[$record->section] = array();
+    }
+    $columns[$record->section][] = $record;
+  }
+  foreach ($columns as $section => $sites) {
+    echo <<<EOF
+            <div class="column $section">
+
+EOF;
+    foreach ($sites as $site) {
       $class_ar = array('site');
       if ($site->redir) $class_ar[] = 'redirect';
       if ($site->error) $class_ar[] = 'error'.$site->error;
@@ -37,10 +48,14 @@ if (file_exists($input_file)) {
                 </div>
 
 EOF;
+    }
+    echo <<<EOF
+            </div>
+
+EOF;
   }
 }
 ?>
-            </div>
         </div>
     </div>
     <script src="js/jquery-1.8.1.min.js"></script>
